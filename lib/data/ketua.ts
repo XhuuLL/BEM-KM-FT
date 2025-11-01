@@ -10,7 +10,7 @@ export const ketuaList: Ketua[] = [
   },
   {
     name: "Rizalul Zikri",
-    year: "2023 / 2024",
+    year: "2020 / 2024",
     kabinet: "Kabinet Harmoni Teknik",
     motto: "Solid, Sinergis, Solutif",
     imageUrl: "/images/ketua/rizalul-zikri.jpg",

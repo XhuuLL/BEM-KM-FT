@@ -21,16 +21,16 @@ bem-ft/
 │       ├── dosen/                 # Halaman /dosen
 │       ├── kontak/                # Halaman /kontak
 │       ├── pengurus/              # Halaman /pengurus
-│       ├── pmb-teknik/            # Halaman /pmb-teknik
-│       │   └── page.tsx           # Konten PMB Teknik
+│       │  └── page.tsx           # Konten Tentang Teknik
 │       └── tentang/               # Halaman /tentang
+│          └── page.tsx           # Konten Tentang Teknik
 │
 ├── components/                    # Komponen React reusable
 │   ├── cards/                     # Komponen kartu informasi
 │   │   ├── divisi-card.tsx
 │   │   ├── dosen-card.tsx
 │   │   ├── ketua-card.tsx
-│   │   └── study-program-card.tsx
+│   │   └── anggota-card.tsx
 │   │
 │   ├── layout/                    # Komponen struktur halaman
 │   │   ├── container.tsx
@@ -44,6 +44,9 @@ bem-ft/
 │   │
 │   ├── sections/                  # Komponen bagian halaman
 │   │   └── hero-section.tsx
+│   │   └── about-section.tsx
+│   │   └── divisi-section.tsx
+│   │   └── contact-section.tsx
 │   │
 │   ├── theme/                     # Komponen tema (light/dark)
 │   │   ├── theme-provider.tsx
@@ -68,14 +71,8 @@ bem-ft/
 │   │   ├── dosen.ts
 │   │   ├── ketua.ts
 │   │   ├── sponsor.ts
-│   │   └── akademik/
-│   │       ├── admission-paths.ts
-│   │       ├── index.ts
-│   │       ├── study-programs.ts
-│   │       └── tuition-fees.ts
 │   │
 │   ├── types/                     # TypeScript type definitions
-│   │   ├── akademik.ts
 │   │   ├── divisi.ts
 │   │   ├── dosen.ts
 │   │   ├── index.ts
@@ -87,17 +84,17 @@ bem-ft/
 │   │
 │   └── utils/                     # Fungsi bantu
 │       ├── classnames.ts         # Helper untuk CSS class merge
+│       ├── slugify.ts         
 │       └── formatter.ts          # Format teks/angka dll
 │
 ├── public/                        # Static assets
 │   ├── images/                    # Gambar konten
 │   │   ├── dosen/                 # Foto dosen
+│   │   ├── ketua/                 # Foto ketua BEM
 │   │   ├── pengurus/              # Foto pengurus
 │   │   └── lainnya/               # Ilustrasi, dokumentasi, dsb.
 │   │
-│   ├── logos/                     # Logo resmi
+│   ├── logos/                     # Logo resmi dan logo sponsor
 │   │   ├── bem-logo.png
-│   │   └── universitas-logo.png
+│   │  
 │   │
-│   └── og/                        # Gambar untuk preview media sosial (Open Graph)
-│       └── og-image.png
