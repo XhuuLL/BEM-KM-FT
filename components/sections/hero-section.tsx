@@ -160,10 +160,10 @@ export default function HeroSection() {
           <motion.div variants={titleVariants} className="space-y-4">
             <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl xl:text-7xl">
               <span className="bg-blue-600 bg-clip-text text-transparent">
-                BEM FT
+                BEM KM FT 
               </span>
               <br />
-              <span className="text-primary">UMUS 2025</span>
+              <span className="text-primary"> UMUS 2025</span>
             </h1>
           </motion.div>
           

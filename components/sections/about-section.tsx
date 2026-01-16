@@ -81,7 +81,7 @@ export default function AboutSection() {
                   transition={{ delay: 0.6, duration: 0.4 }}
                   className="absolute -top-3 -right-3 bg-blue-600 dark:bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg"
                 >
-                  BEM FT 2024
+                  BEM KM FT 2025
                 </motion.div>
               </div>
             </motion.div>

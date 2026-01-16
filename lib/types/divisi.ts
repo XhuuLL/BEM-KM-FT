@@ -4,8 +4,16 @@ export interface Member {
   pictureUrl?: string;
 }
 
-export interface Division {
+export interface Person {
   name: string;
-  coordinator: string;
+  pictureUrl: string;
+}
+
+export interface Division {
+  slug: string;
+  name: string;
+  image: string;
+  description: string;
+  coordinator: Person;
   members: Member[];
 }

@@ -1,4 +1,5 @@
 // components/cards/DivisiCard.tsx
+
 import { type Division } from "@/lib/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AnggotaCard } from "@/components/cards/anggota-card";
@@ -19,20 +20,31 @@ export function DivisiCard({ data }: DivisiCardProps) {
             {data.name}
           </CardTitle>
         </CardHeader>
+
         <CardContent className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+
+          {/* KOORDINATOR */}
           <AnggotaCard
-            name={data.coordinator}
-            role="Koordinator"
-            divisionSlug={divisionSlug}
-          />
+              name={data.coordinator.name}
+              pictureUrl={data.coordinator.pictureUrl}
+              role="Koordinator"
+              divisionSlug={divisionSlug}
+              isKoordinator
+            />
+
+
+          {/* ANGGOTA */}
           {data.members.map((member, index) => (
             <AnggotaCard
               key={index}
               name={member.name}
               role={member.role}
+              pictureUrl={member.pictureUrl}
               divisionSlug={divisionSlug}
             />
           ))}
+
+
         </CardContent>
       </Card>
     </div>

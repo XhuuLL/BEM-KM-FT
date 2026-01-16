@@ -3,7 +3,7 @@ import type { CampusInfo } from "@/lib/types/info";
 export const campusInfo: CampusInfo = {
   name: "Universitas Muhadi Setiabudi",
   faculty: "Fakultas Teknik",
-  abbreviation: "BEM FT",
+  abbreviation: "BEM KM FT",
   description: "Organisasi Mahasiswa Fakultas Teknik yang bergerak dalam bidang kolaborasi, inovasi, dan aksi nyata.",
   contact: {
     email: "bemft@gmail.com",

@@ -8,6 +8,7 @@ interface AnggotaCardProps {
   role?: string;
   divisionSlug: string;
   isKoordinator?: boolean;
+  pictureUrl?: string;   // ⬅️ TAMBAHAN
 }
 
 const slugify = (str: string) =>
@@ -18,9 +19,14 @@ export function AnggotaCard({
   role,
   divisionSlug,
   isKoordinator = false,
+  pictureUrl,            // ⬅️ TAMBAHAN
 }: AnggotaCardProps) {
+
   const slug = slugify(name);
-  const imagePath = `/images/pengurus/${divisionSlug}/${slug}.jpg`;
+
+  // 🔧 PRIORITAS: pictureUrl → fallback ke auto-path
+  const imagePath =
+    pictureUrl || `/images/pengurus/${divisionSlug}/${slug}.jpg`;
 
   const [showImage, setShowImage] = useState(true);
 
@@ -33,9 +39,9 @@ export function AnggotaCard({
           width={96}
           height={96}
           onError={() => setShowImage(false)}
-          className={`mx-auto rounded-full object-cover w-24 h-24 border ${
+          className={`mx-auto rounded-full object-cover w-24 h-24 border transition-all ${
             isKoordinator
-              ? "border-blue-500"
+              ? "border-blue-500 scale-105"
               : "border-gray-300 dark:border-gray-700"
           }`}
         />

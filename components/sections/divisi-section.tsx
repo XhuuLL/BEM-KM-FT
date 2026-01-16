@@ -6,6 +6,7 @@ import { divisions } from "@/lib/data/divisi";
 import { Users, Target, ChevronRight, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
+
 export default function DivisiSection() {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -95,7 +96,7 @@ export default function DivisiSection() {
           </motion.div>
 
           <motion.h2 className="text-4xl md:text-5xl font-bold text-blue-600 dark:text-blue-400" variants={itemVariants}>
-            Divisi BEM FT
+            Divisi BEM KM FT
           </motion.h2>
 
           <motion.p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto leading-relaxed" variants={itemVariants}>
@@ -160,7 +161,7 @@ export default function DivisiSection() {
 
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button asChild variant="outline" size="lg" className="bg-white dark:bg-gray-900 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/50">
-                <a href="/pengurus">
+                <a href="/divisi" className="flex items-center gap-2">
                   Lihat Selengkapnya
                   <ChevronRight className="w-4 h-4" />
                 </a>

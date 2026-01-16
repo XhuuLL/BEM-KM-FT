@@ -21,11 +21,11 @@ export function Footer() {
                 />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-blue-600 dark:text-blue-400">BEM FT</h3>
+                <h3 className="text-lg font-bold text-blue-600 dark:text-blue-400">BEM KM FT</h3>
               </div>
             </div>
             <p className="text-sm text-muted-foreground">
-              Badan Eksekutif Mahasiswa Fakultas Teknik Universitas Muhadi Setiabudi.
+              Badan Eksekutif Mahasiswa Keluarga Mahasiswa Fakultas Teknik Universitas Muhadi Setiabudi.
             </p>
             <div className="flex gap-3">
               {socialLinks.map((item) => (
@@ -115,11 +115,11 @@ export function Footer() {
         <span>
           © {new Date().getFullYear()} BEM FT - Badan Eksekutif Mahasiswa Fakultas Teknik Universitas Muhadi Setiabudi. All Right Reserved <br /> Created With <span className="text-pink-500">❤️</span> By{" "}
           <Link
-            href="https://github.com/manzzzx"
+            href="https://github.com/XhuuLL"
             target="_blank"
             className="text-blue-600 hover:underline"
           >
-            Manzzzx
+            Mas Fatkhul
           </Link>
         </span>
       </div>
