@@ -49,5 +49,3 @@ Pastikan **Node.js** sudah terinstal di komputer Anda.
 ## 📌 Tujuan
 
 Website ini dibuat untuk meningkatkan transparansi organisasi, mempermudah penyebaran informasi, serta menjadi media komunikasi yang efektif antara pengurus BEM-KMFT dan mahasiswa Fakultas Teknik.
-
-tinggal bilang, nanti aku sesuaikan 🔥
