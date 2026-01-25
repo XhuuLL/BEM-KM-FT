@@ -2,7 +2,6 @@ import Link from "next/link";
 import { footerLinks } from "@/lib/constants/nav";
 import { socialLinks, socialIcons } from "@/lib/constants/social";
 import { Icon } from "@iconify/react";
-import { campusInfo } from "@/lib/constants/info";
 
 export function Footer() {
   return (
