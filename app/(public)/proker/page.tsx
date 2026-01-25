@@ -3,8 +3,12 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Container } from "@/components/layout/container";
+import { motion, AnimatePresence, Variants } from "framer-motion";
+import { LayoutGrid } from "lucide-react";
 
 const divisions = ["All", "BPH", "PSDM", "Minat Bakat", "HUMAS", "IMFOKOM"];
+
 
 const prokerData = [
   {
@@ -100,6 +104,11 @@ const prokerData = [
   }
 ];
 
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 }
+};
+
 export default function ProkerPage() {
   const [activeDiv, setActiveDiv] = useState("All");
 
@@ -109,66 +118,139 @@ export default function ProkerPage() {
       : prokerData.filter(item => item.divisi === activeDiv);
 
   return (
-    <main className="min-h-screen pt-28 px-10 text-center">
+    <section className="relative min-h-screen py-24 overflow-hidden bg-slate-50 dark:bg-[#020617]">
+      {/* Background Decorative Blobs */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-[120px] -z-10" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-indigo-500/5 rounded-full blur-[120px] -z-10" />
 
-      <h1 className="text-4xl font-bold mb-4 text-slate-900 dark:text-white">
-        Program Kerja
-      </h1>
-
-      <p className="max-w-2xl mx-auto mb-10 text-slate-600 dark:text-gray-300">
-        Program kerja merupakan rencana kegiatan yang akan dilaksanakan oleh pengurus selama satu periode kepengurusan.
-      </p>
-
-      {/* FILTER */}
-      <div className="flex justify-center flex-wrap gap-3 mb-12">
-        {divisions.map(div => (
-          <button
-            key={div}
-            onClick={() => setActiveDiv(div)}
-            className={`px-5 py-2 rounded-full border text-sm transition-all
-              ${activeDiv === div
-                ? "bg-blue-600 text-white border-blue-600 shadow-lg"
-                : "bg-transparent text-slate-700 dark:text-gray-300 border-slate-300 dark:border-slate-700 hover:bg-blue-600 hover:text-white"}
-            `}
+      <Container>
+        {/* --- HEADER --- */}
+        <div className="text-center space-y-6 mb-16">
+          
+          
+          <motion.h1 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-6xl font-black text-slate-900 dark:text-white tracking-tight"
           >
-            {div}
-          </button>
-        ))}
-      </div>
-
-      {/* PROKER CARDS */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredData.map(item => (
-          <Link
-            key={item.slug}
-            href={`/proker/${item.slug}`}
-            className="group bg-slate-200/40 dark:bg-white/10 rounded-xl overflow-hidden backdrop-blur hover:scale-105 transition-all duration-300 shadow-md hover:shadow-xl"
+            Program <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500">Kerja</span>
+          </motion.h1>
+          
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed font-light"
           >
-            <div className="relative h-52 w-full">
-              <Image
-                src={item.image}
-                alt={item.title}
-                fill
-                className="object-cover"
-              />
-            </div>
+            Rencana strategis dan pergerakan nyata BEM KM FT untuk menciptakan kebermanfaatan bagi seluruh mahasiswa Teknik.
+          </motion.p>
+        </div>
 
-            <div className="p-5">
-              <h3 className="text-lg font-semibold mb-1 text-slate-900 dark:text-white">
-                {item.title}
-              </h3>
+        {/* --- FILTER BUTTONS --- */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="flex justify-center flex-wrap gap-3 mb-16"
+        >
+          {divisions.map(div => (
+            <button
+              key={div}
+              onClick={() => setActiveDiv(div)}
+              className={`relative px-6 py-2.5 rounded-2xl text-sm font-semibold transition-all duration-300 overflow-hidden
+                ${activeDiv === div
+                  ? "bg-blue-600 text-white shadow-[0_10px_20px_-5px_rgba(37,99,235,0.4)]"
+                  : "bg-white dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 hover:text-blue-600"
+                }
+              `}
+            >
+              {div}
+              {activeDiv === div && (
+                <motion.div 
+                  layoutId="activeTab"
+                  className="absolute inset-0 bg-blue-600 -z-10"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+            </button>
+          ))}
+        </motion.div>
 
-              <p className="text-sm text-slate-600 dark:text-gray-300">
-                {item.short}
-              </p>
+        {/* --- PROKER GRID WITH ANIMATION --- */}
+        <motion.div 
+          layout
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredData.map((item) => (
+              <motion.div
+                key={item.slug}
+                layout
+                variants={fadeInUp}
+                initial="hidden"
+                animate="visible"
+                exit={{ opacity: 0, scale: 0.9 }}
+                whileHover={{ y: -10 }}
+                transition={{ duration: 0.4 }}
+              >
+                <Link
+                  href={`/proker/${item.slug}`}
+                  className="group block h-full bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border border-slate-200 dark:border-slate-800 rounded-[2rem] overflow-hidden transition-all duration-500 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:border-blue-500/40"
+                >
+                  <div className="relative h-56 w-full overflow-hidden">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    
+                    {/* Badge Category on Image */}
+                    <div className="absolute top-4 right-4">
+                      <div className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] font-bold text-white uppercase tracking-wider shadow-xl">
+                        {item.divisi}
+                      </div>
+                    </div>
+                  </div>
 
-              <span className="inline-block mt-3 text-xs font-semibold text-blue-600 dark:text-blue-400">
-                {item.divisi}
-              </span>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </main>
+                  <div className="p-8 space-y-4">
+                    <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400">
+                      <LayoutGrid size={14} />
+                      <span className="text-[10px] font-bold uppercase tracking-[0.2em]">Project Detail</span>
+                    </div>
+                    
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition-colors duration-300 line-clamp-1">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400 line-clamp-2 font-light">
+                      {item.short}
+                    </p>
+
+                    <div className="pt-4 flex items-center text-xs font-bold text-slate-400 dark:text-slate-500 group-hover:text-blue-500 transition-colors">
+                      Eksplorasi Program 
+                      <motion.span className="ml-2 transition-transform group-hover:translate-x-1"> → </motion.span>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+
+        {/* Empty State */}
+        {filteredData.length === 0 && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-20"
+          >
+            <p className="text-slate-500">Belum ada program kerja untuk kategori ini.</p>
+          </motion.div>
+        )}
+      </Container>
+    </section>
   );
 }

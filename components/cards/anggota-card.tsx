@@ -8,7 +8,7 @@ interface AnggotaCardProps {
   role?: string;
   divisionSlug: string;
   isKoordinator?: boolean;
-  pictureUrl?: string;   // ⬅️ TAMBAHAN
+  pictureUrl?: string;   
 }
 
 const slugify = (str: string) =>
@@ -19,12 +19,12 @@ export function AnggotaCard({
   role,
   divisionSlug,
   isKoordinator = false,
-  pictureUrl,            // ⬅️ TAMBAHAN
+  pictureUrl,            
 }: AnggotaCardProps) {
 
   const slug = slugify(name);
 
-  // 🔧 PRIORITAS: pictureUrl → fallback ke auto-path
+  
   const imagePath =
     pictureUrl || `/images/pengurus/${divisionSlug}/${slug}.jpg`;
 

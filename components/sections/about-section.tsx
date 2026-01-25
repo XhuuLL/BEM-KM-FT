@@ -119,12 +119,12 @@ export default function AboutSection() {
 
               {/* CTA Button */}
               <motion.div variants={itemVariants}>
-                <Link href="/tentang">
+                <Link href="/divisi">
                   <Button
                     size="lg"
                     className="group bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white shadow-lg hover:shadow-xl transition-all"
                   >
-                    Pelajari Lebih Lanjut
+                    Jelajahi Divisi Kami
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </Link>

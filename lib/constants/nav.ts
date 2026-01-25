@@ -1,12 +1,20 @@
 import type { NavLink } from "@/lib/types/nav";
+import {
+  Home,
+  Users,
+  Target,
+  UserCog,
+  ClipboardList,
+  Phone,
+} from "lucide-react";
 
 export const navLinks: NavLink[] = [
-  { title: "Beranda", href: "/" },
-  {title: "Divisi", href: "/divisi" },
-  { title: "Tentang", href: "/tentang" },
-  { title: "Pengurus", href: "/pengurus" },
-  { title: "Program Kerja", href: "/proker" },
-  { title: "Kontak", href: "/kontak" },
+  { title: "Beranda", href: "/", icon: Home },
+  { title: "Divisi", href: "/divisi", icon: Users },
+  { title: "Visi Misi", href: "/tentang", icon: Target },
+  { title: "Pengurus", href: "/pengurus", icon: UserCog },
+  { title: "Program Kerja", href: "/proker", icon: ClipboardList },
+  { title: "Kontak", href: "/kontak", icon: Phone },
 ];
 
 export const footerLinks: NavLink[] = [...navLinks];

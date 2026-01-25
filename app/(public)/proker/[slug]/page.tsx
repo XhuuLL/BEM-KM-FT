@@ -1,84 +1,101 @@
+"use client";
+
+import { Container } from "@/components/layout/container";
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { ArrowLeft, Calendar, Tag, Info, Users } from "lucide-react"; // Import sudah diperbaiki
+import Link from "next/link";
 
+// Konfigurasi Animasi
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } 
+  },
+};
+
+// Data Proker
 const prokerData = {
   "Enginering-Competition": {
     title: "Engineering Competition",
     divisi: "PSDM",
     image: "/images/proker/detail/dekancup.jpg",
-    full: "Engineering Competition 2025 adalah ajang prestisius yang menggabungkan kecanggihan strategi digital dengan semangat sportivitas fisik dalam satu panggung kompetisi yang dinamis. Dalam kategori e-sports, para peserta akan diuji ketangkasan taktisnya melalui turnamen Mobile Legends, Free Fire, dan Magic Chess GoGo yang menuntut kerja sama tim serta pemikiran kritis khas mahasiswa teknik. Tidak hanya di dunia virtual, kompetisi ini juga merambah ke lapangan hijau melalui pertandingan Futsal yang mengandalkan agilitas fisik, serta turnamen PlayStation bagi para pecinta simulasi olahraga konsol. Event ini hadir bukan sekadar untuk memperebutkan gelar juara, melainkan sebagai wadah kolaborasi, penguatan solidaritas, dan pembuktian mentalitas tangguh dalam menghadapi tantangan di era digital maupun dunia nyata."
+    full: "Engineering Competition 2025 adalah ajang prestisius yang menggabungkan kecanggihan strategi digital dengan semangat sportivitas fisik dalam satu panggung kompetisi yang dinamis..."
   },
   "sidang": {
     title: "Pelatihan Persidangan",
     divisi: "BPH",
     image: "/images/proker/detail/sidang.png",
-    full: "Pelatihan Sidang Musyawarah Besar ini hadir sebagai sarana edukasi strategis untuk membekali para kader organisasi dengan pemahaman mendalam mengenai tata laksana persidangan yang formal, sistematis, dan demokratis. Melalui pelatihan ini, peserta akan diajak untuk mendalami mekanisme pengambilan keputusan, teknik interupsi, hingga penyusunan konsideran sidang guna mempersiapkan regenerasi kepemimpinan yang berintegritas. Kegiatan ini dirancang untuk memastikan seluruh rangkaian Musyawarah Besar nantinya dapat berjalan secara efektif, terstruktur, dan sesuai dengan kaidah konstitusi organisasi yang berlaku."
+    full: "Pelatihan Sidang Musyawarah Besar ini hadir sebagai sarana edukasi strategis untuk membekali para kader organisasi..."
   },
   "healing": {
-    title: "Healing WIth Teknik",
+    title: "Healing With Teknik",
     divisi: "Minat Bakat",
     image: "/images/proker/detail/healing.png",
-    full: "Healing with Teknik hadir sebagai wadah penyegaran bagi mahasiswa teknik di tengah padatnya rutinitas akademik dan praktikum yang menuntut konsentrasi tinggi. Kegiatan ini dirancang khusus untuk menjaga keseimbangan kesehatan mental serta mempererat tali persaudaraan antar-angkatan melalui berbagai aktivitas rekreatif yang santai dan inspiratif. Dengan semangat kebersamaan, program ini menjadi momentum penting untuk melepas penat sejenak, membangun kembali energi positif, dan memperkuat solidaritas civitas akademika sebelum kembali berfokus pada inovasi dan pengembangan teknologi serta tugas kuliah."
+    full: "Healing with Teknik hadir sebagai wadah penyegaran bagi mahasiswa teknik di tengah padatnya rutinitas akademik..."
   },
   "bem-fest": {
     title: "Partisipasi BEM CHAMPIONSHIP 2025",
     divisi: "HUMAS",
     image: "/images/proker/detail/bem.png",
-    full: "Partisipasi BEM Championship merupakan wujud dedikasi dan keterlibatan aktif organisasi dalam ajang kompetisi bergengsi yang mempertemukan berbagai bakat di bidang olahraga maupun seni tingkat universitas. Melalui partisipasi ini, BEM berkomitmen untuk mengobarkan semangat juang dan integritas mahasiswa teknik dalam mengharumkan nama fakultas melalui prestasi non-akademik. Ajang ini bukan sekadar tentang perolehan gelar juara, melainkan sarana strategis untuk memperluas jejaring antar-organisasi, memperkuat identitas fakultas, serta membuktikan bahwa mahasiswa teknik memiliki kompetensi yang unggul dan suportif dalam berbagai aspek kompetisi."
+    full: "Partisipasi BEM Championship merupakan wujud dedikasi dan keterlibatan aktif organisasi..."
   },
-    "bukber": {
+  "bukber": {
     title: "Buka Bersama",
     divisi: "HUMAS",
     image: "/images/proker/detail/bukber.png",
-    full: "Buka Bersama di bulan Ramadhan adalah momen istimewa yang dirayakan dengan penuh kehangatan dan kebersamaan di antara civitas akademika. Kegiatan ini tidak hanya menjadi ajang untuk mempererat tali silaturahmi antar mahasiswa, dosen, dan staf, tetapi juga sebagai wujud syukur atas nikmat kesehatan dan kesempatan untuk beribadah bersama. Dengan suasana yang penuh kekeluargaan, acara buka puasa bersama ini diharapkan dapat menumbuhkan semangat solidaritas, empati, serta memperkuat ikatan sosial dalam komunitas kampus selama bulan suci Ramadhan."
+    full: "Buka Bersama di bulan Ramadhan adalah momen istimewa yang dirayakan dengan penuh kehangatan..."
   },
-    "informasi": {
+  "informasi": {
     title: "Informasi Akademik",
     divisi: "IMFOKOM",
     image: "/images/proker/detail/informasi.png",
-    full: "Penyebaran Informasi Akademik secara efektif merupakan aspek krusial dalam mendukung kelancaran proses belajar mengajar di lingkungan fakultas teknik. Melalui inisiatif ini, BEM berkomitmen untuk menyediakan akses informasi yang akurat, terkini, dan mudah diakses mengenai berbagai aspek akademik seperti jadwal kuliah, perubahan kurikulum, beasiswa, serta kegiatan akademik lainnya. Dengan demikian, mahasiswa dapat lebih siap dan terinformasi dalam menjalani perjalanan akademiknya, sekaligus memperkuat komunikasi antara pihak fakultas dan mahasiswa demi terciptanya lingkungan belajar yang kondusif dan produktif."
+    full: "Penyebaran Informasi Akademik secara efektif merupakan aspek krusial..."
   },
   "gapsi": {
     title: "Pertandingan GAPSI",
     divisi: "Minat Bakat",
     image: "/images/proker/detail/gapsi.png",
-    full: "Pertandingan GAPSI (Gelar Apresiasi Prestasi Seni dan Olahraga) adalah ajang kompetisi yang dirancang untuk mengasah bakat dan keterampilan mahasiswa dalam bidang seni dan olahraga. Melalui pertandingan ini, peserta akan diuji kemampuan teknis, kreativitas, serta sportivitasnya dalam berbagai cabang seni pertunjukan dan olahraga. Kegiatan ini tidak hanya bertujuan untuk mencari juara, tetapi juga sebagai sarana pengembangan diri, peningkatan rasa percaya diri, serta mempererat solidaritas antar mahasiswa melalui semangat kompetisi yang sehat dan positif."
+    full: "Pertandingan GAPSI (Gelar Apresiasi Prestasi Seni dan Olahraga) adalah ajang kompetisi..."
   },
   "sosmed": {
     title: "Sosial Media",
     divisi: "IMFOKOM",
     image: "/images/proker/detail/sosmed.png",
-    full: "Pengaktifan akun sosial media BEM-KM-FT merupakan langkah strategis untuk memperkuat kehadiran digital organisasi di era informasi saat ini. Melalui platform sosial media, BEM dapat lebih efektif dalam menyebarkan informasi, berinteraksi dengan mahasiswa, serta mempromosikan berbagai kegiatan dan program kerja yang dijalankan. Dengan konten yang menarik dan relevan, akun sosial media ini diharapkan dapat menjadi jembatan komunikasi yang dinamis antara BEM dan civitas akademika, sekaligus meningkatkan partisipasi aktif mahasiswa dalam berbagai inisiatif organisasi."
+    full: "Pengaktifan akun sosial media BEM-KM-FT merupakan langkah strategis..."
   },
   "wisuda": {
     title: "Parade Wisuda Teknik",
     divisi: "PSDM",
     image: "/images/proker/detail/wisuda.png",
-    full: "Parade Wisuda Teknik adalah sebuah perayaan istimewa yang dirancang untuk menghormati dan merayakan pencapaian akademik para lulusan fakultas teknik. Acara ini tidak hanya menjadi momen bersejarah bagi para wisudawan, tetapi juga sebagai simbol kebanggaan bagi seluruh civitas akademika. Melalui parade yang meriah, para lulusan dapat menunjukkan identitas mereka sebagai bagian dari komunitas teknik, sekaligus menginspirasi generasi berikutnya untuk terus berprestasi dan berkontribusi dalam bidang teknologi dan inovasi."
+    full: "Parade Wisuda Teknik adalah sebuah perayaan istimewa..."
   },
   "maba": {
     title: "Maba Teknik Orientation",
     divisi: "PSDM",
     image: "/images/proker/detail/maba.png",
-    full: "Maba Teknik Orientation adalah program pengenalan yang dirancang khusus untuk menyambut mahasiswa baru di lingkungan fakultas teknik. Kegiatan ini bertujuan untuk memberikan gambaran menyeluruh mengenai kehidupan akademik, budaya kampus, serta berbagai fasilitas dan sumber daya yang tersedia bagi mahasiswa. Melalui orientasi ini, para mahasiswa baru diharapkan dapat lebih mudah beradaptasi, membangun jaringan sosial, serta memahami nilai-nilai dan etika yang dijunjung tinggi di fakultas teknik. Program ini juga menjadi kesempatan bagi mahasiswa baru untuk mengenal lebih dekat organisasi kemahasiswaan, termasuk BEM, yang akan mendukung perjalanan akademik mereka selama di kampus."
+    full: "Maba Teknik Orientation adalah program pengenalan yang dirancang khusus..."
   },
   "lkmm": {
     title: "LKMM-TD",
     divisi: "BPH",
     image: "/images/proker/detail/lkmm.png",
-    full: "LKMM-TD (Latihan Keterampilan Manajemen Mahasiswa Tingkat Dasar) adalah program pelatihan yang dirancang untuk membekali mahasiswa dengan keterampilan dasar dalam manajemen organisasi kemahasiswaan. Melalui pelatihan ini, peserta akan diajarkan berbagai aspek penting seperti perencanaan, pengorganisasian, kepemimpinan, serta teknik komunikasi efektif yang sangat dibutuhkan dalam menjalankan tugas-tugas organisasi. Program ini bertujuan untuk menciptakan kader-kader mahasiswa yang kompeten, profesional, dan siap menghadapi tantangan dalam mengelola organisasi kemahasiswaan di tingkat fakultas maupun universitas."
+    full: "LKMM-TD (Latihan Keterampilan Manajemen Mahasiswa Tingkat Dasar)..."
   },
   "website": {
     title: "Pengembangan Website BEM FT",
     divisi: "IMFOKOM",
     image: "/images/proker/detail/web.png",
-    full: "Pengembangan Website BEM FT merupakan inisiatif strategis untuk meningkatkan visibilitas dan aksesibilitas informasi mengenai kegiatan, program kerja, serta layanan yang disediakan oleh Badan Eksekutif Mahasiswa Fakultas Teknik. Melalui website ini, diharapkan dapat menjadi platform komunikasi yang efektif antara BEM dengan mahasiswa, dosen, serta pihak eksternal lainnya. Website ini akan dirancang dengan tampilan yang user-friendly, responsif, dan informatif, sehingga memudahkan pengguna dalam menjelajahi berbagai konten yang tersedia, mulai dari berita terkini, agenda kegiatan, hingga sumber daya akademik yang bermanfaat bagi civitas akademika."
+    full: "Pengembangan Website BEM FT merupakan inisiatif strategis..."
   },
   "semarak": {
     title: "Semarak Ramadhan",
     divisi: "HUMAS",
     image: "/images/proker/detail/semarak.png",
-    full: "Semarak Ramadhan adalah sebuah inisiatif yang dirancang untuk merayakan dan menghidupkan suasana bulan suci Ramadhan di lingkungan fakultas teknik. Kegiatan ini bertujuan untuk mempererat tali silaturahmi antar mahasiswa, dosen, dan staf melalui berbagai acara yang penuh makna, seperti buka puasa bersama, pengajian, serta kegiatan sosial yang menumbuhkan kepedulian terhadap sesama. Dengan semangat kebersamaan dan keikhlasan, Semarak Ramadhan diharapkan dapat menjadi momentum penting untuk meningkatkan kualitas ibadah, memperkuat solidaritas komunitas kampus, serta menumbuhkan rasa empati dan kepedulian sosial selama bulan yang penuh berkah ini."
+    full: "Semarak Ramadhan adalah sebuah inisiatif yang dirancang untuk merayakan..."
   }
 };
 
@@ -90,29 +107,111 @@ export default function DetailProker({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <main className="min-h-screen pt-28 px-6 max-w-5xl mx-auto text-center">
+    <section className="relative min-h-screen py-24 overflow-hidden bg-slate-50 dark:bg-[#020617]">
+      {/* Dekorasi Latar Belakang */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] -z-10" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-[120px] -z-10" />
 
-      <span className="inline-block mb-4 px-4 py-1 text-sm rounded-full bg-blue-600 text-white shadow">
-        {data.divisi}
-      </span>
+      <Container>
+        {/* Tombol Kembali */}
+        <motion.div 
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="mb-12"
+        >
+          <Link 
+            href="/proker" 
+            className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition-colors group"
+          >
+            <div className="p-2 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 group-hover:border-blue-500/50 group-hover:shadow-lg transition-all">
+              <ArrowLeft size={16} />
+            </div>
+            Kembali ke Daftar Proker
+          </Link>
+        </motion.div>
 
-      <h1 className="text-4xl font-bold mb-6 text-slate-900 dark:text-white">
-        {data.title}
-      </h1>
+        <div className="grid lg:grid-cols-12 gap-12 items-start">
+          
+          {/* Kolom Kiri: Visual & Metadata */}
+          <motion.div 
+            variants={fadeInUp}
+            initial="hidden"
+            animate="visible"
+            className="lg:col-span-7 space-y-8"
+          >
+            {/* Main Featured Image */}
+            <div className="relative h-[300px] md:h-[500px] w-full rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/20 dark:border-slate-800 group">
+              <Image 
+                src={data.image} 
+                alt={data.title} 
+                fill 
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent" />
+            </div>
 
-      <div className="relative w-full h-[420px] rounded-2xl overflow-hidden mb-10 shadow-xl">
-        <Image 
-          src={data.image} 
-          alt={data.title} 
-          fill 
-          className="object-cover"
-        />
-      </div>
+            {/* Metadata Badges */}
+            <div className="flex flex-wrap gap-4">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+                <Tag size={16} className="text-blue-500" />
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                  {data.divisi}
+                </span>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+                <Calendar size={16} className="text-emerald-500" />
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                  Periode 2025
+                </span>
+              </div>
+            </div>
+          </motion.div>
 
-      <p className="text-lg leading-relaxed text-slate-600 dark:text-gray-300 max-w-3xl mx-auto">
-        {data.full}
-      </p>
+          {/* Kolom Kanan: Detail Konten */}
+          <motion.div 
+            variants={fadeInUp}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 0.2 }}
+            className="lg:col-span-5 space-y-8"
+          >
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight tracking-tight">
+                {data.title}
+              </h1>
+              <div className="h-1.5 w-24 bg-gradient-to-r from-blue-600 to-indigo-500 rounded-full" />
+            </div>
 
-    </main>
+            <div className="relative p-8 rounded-[2rem] bg-white dark:bg-slate-900/40 backdrop-blur-xl border border-slate-200 dark:border-slate-800 shadow-xl">
+              <div className="flex items-center gap-2 mb-6 text-blue-600 dark:text-blue-400 font-bold text-sm uppercase tracking-widest">
+                <Info size={18} /> Deskripsi Program
+              </div>
+              
+              <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-300 font-light">
+                {data.full}
+              </p>
+            </div>
+
+            {/* CTA Section */}
+            <div className="p-6 rounded-3xl bg-blue-600/5 border border-blue-500/10 flex items-center justify-between group cursor-pointer hover:bg-blue-600/10 transition-all">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
+                  <Users size={20} />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-slate-900 dark:text-white">Ingin Berkolaborasi?</h4>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Hubungi kami</p>
+                </div>
+              </div>
+              <Link href="/kontak" className="p-2 rounded-full bg-white dark:bg-slate-800 group-hover:translate-x-1 transition-transform">
+                <ArrowLeft size={16} className="rotate-180" />
+              </Link>
+            </div>
+          </motion.div>
+
+        </div>
+      </Container>
+    </section>
   );
 }

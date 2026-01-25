@@ -15,7 +15,7 @@ export function Footer() {
             <div className="flex items-center space-x-2">
               <div className="w-12 h-12 flex items-center justify-center">
                 <img 
-                  src="/logos/logo.png" 
+                  src="/logos/BEM.png" 
                   alt="BEM FT Logo" 
                   className="w-12 h-12 object-contain"
                 />
@@ -81,47 +81,64 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Partners */}
-          <div>
-            <h3 className="text-sm font-semibold text-foreground mb-4">
-              Kontak
-            </h3>
-            <p className="text-sm text-muted-foreground">
-              {campusInfo.contact.email}
-            </p>
-            <p className="text-sm text-muted-foreground">
-              {campusInfo.contact.phone}
-            </p>
-            <p className="text-sm text-muted-foreground">
-              {campusInfo.contact.address}
-            </p>
-            {campusInfo.contact.mapsUrl && (
-              <Link
-                href={campusInfo.contact.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline text-sm block mt-2"
-              >
-                Lihat di Google Maps
-              </Link>
-            )}
-          </div>
+          {/* Kontak */}
+<div>
+  <h3 className="text-sm font-semibold text-foreground mb-4">
+    Kontak
+  </h3>
+
+  <p className="text-sm text-muted-foreground mb-4">
+    Ingin bertanya, memberi saran, atau berkolaborasi dengan kami?
+  </p>
+
+  <div className="space-y-2">
+    <Link
+      href="/kontak"
+      className="inline-block text-sm font-medium text-blue-600 hover:underline"
+    >
+      Hubungi Kami →
+    </Link>
+  </div>
+</div>
 
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t py-4 text-center text-xs text-muted-foreground">
-        <span>
-          © {new Date().getFullYear()} BEM FT - Badan Eksekutif Mahasiswa Fakultas Teknik Universitas Muhadi Setiabudi. All Right Reserved <br /> Created With <span className="text-pink-500">❤️</span> By{" "}
-          <Link
-            href="https://github.com/XhuuLL"
-            target="_blank"
-            className="text-blue-600 hover:underline"
-          >
-            Mas Fatkhul
-          </Link>
-        </span>
+      <div className="border-t py-6 text-xs text-muted-foreground">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 max-w-7xl mx-auto px-4">
+          
+          {/* Kiri */}
+          <p className="text-center sm:text-left leading-relaxed">
+            © {new Date().getFullYear()}{" "}
+            <span className="font-semibold text-foreground">
+              BEM KM FT – Badan Eksekutif Mahasiswa Keluarga Mahasiswa Fakultas Teknik
+            </span>
+            <br className="hidden sm:block" />
+            Universitas Muhadi Setiabudi Brebes
+          </p>
+
+          {/* Kanan */}
+          <p className="text-center sm:text-right">
+            Crafted with <span className="text-pink-500">❤️</span> by{" "}
+            <Link
+              href="https://github.com/XhuuLL"
+              target="_blank"
+              className="text-blue-600 hover:underline font-medium"
+            >
+              Akhmad Fatkhul.A
+            </Link>{" "}
+            &{" "}
+            <Link
+              href="https://github.com/Manzzzx"
+              target="_blank"
+              className="text-blue-600 hover:underline font-medium"
+            >
+              Nur Firmansyah
+            </Link>
+          </p>
+
+        </div>
       </div>
     </footer>
   );

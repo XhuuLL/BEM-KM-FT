@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
 import { Container } from '@/components/layout/container';
+import Image from 'next/image'; 
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -54,32 +55,16 @@ const imageVariants: Variants = {
 
 const GridBackground = () => (
   <div className="absolute inset-0 overflow-hidden pointer-events-none">
-    {/* Main grid pattern */}
+    {/* Menggunakan Tailwind arbitrary values untuk menggantikan inline style agar lebih bersih */}
     <div 
-      className="absolute inset-0"
-      style={{
-        backgroundImage: `
-          linear-gradient(rgba(147, 197, 253, 0.12) 2px, transparent 2px),
-          linear-gradient(90deg, rgba(147, 197, 253, 0.12) 2px, transparent 2px)
-        `,
-        backgroundSize: '60px 60px'
-      }}
+      className="absolute inset-0 [background-image:linear-gradient(rgba(147,197,253,0.12)_2px,transparent_2px),linear-gradient(90deg,rgba(147,197,253,0.12)_2px,transparent_2px)] [background-size:60px_60px]"
     />
-    {/* Subtle overlay grid */}
     <div 
-      className="absolute inset-0 dark:opacity-0 opacity-20"
-      style={{
-        backgroundImage: `
-          linear-gradient(rgba(59, 130, 246, 0.08) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(59, 130, 246, 0.08) 1px, transparent 1px)
-        `,
-        backgroundSize: '30px 30px'
-      }}
+      className="absolute inset-0 dark:opacity-0 opacity-20 [background-image:linear-gradient(rgba(59,130,246,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.08)_1px,transparent_1px)] [background-size:30px_30px]"
     />
     
-    {/* Enhanced floating elements */}
     <motion.div 
-      className="absolute top-10 left-20 w-32 h-32 bg-gradient-to-br from-primary/8 to-blue-400/8 rounded-full blur-2xl"
+      className="absolute top-10 left-20 w-32 h-32 bg-gradient-to-br from-primary/10 to-blue-400/10 rounded-full blur-2xl"
       animate={{
         scale: [1, 1.3, 1],
         opacity: [0.4, 0.8, 0.4],
@@ -107,48 +92,17 @@ const GridBackground = () => (
         delay: 2
       }}
     />
-    <motion.div 
-      className="absolute bottom-1/4 left-10 w-24 h-24 bg-gradient-to-br from-primary/6 to-blue-400/6 rounded-full blur-xl"
-      animate={{
-        scale: [1, 1.2, 1],
-        opacity: [0.5, 0.9, 0.5],
-        x: [0, 10, 0],
-        y: [0, -20, 0]
-      }}
-      transition={{
-        duration: 10,
-        repeat: Infinity,
-        ease: "easeInOut",
-        delay: 1
-      }}
-    />
-    
-    {/* Additional accent elements */}
-    <motion.div 
-      className="absolute top-2/3 right-1/3 w-16 h-16 bg-gradient-to-br from-blue-400/5 to-primary/5 rounded-full blur-lg"
-      animate={{
-        scale: [1, 1.1, 1],
-        opacity: [0.6, 1, 0.6]
-      }}
-      transition={{
-        duration: 4,
-        repeat: Infinity,
-        ease: "easeInOut",
-        delay: 0.5
-      }}
-    />
   </div>
 );
 
 export default function HeroSection() {
-  const [hoveredButton, setHoveredButton] = React.useState<string | null>(null);
 
   return (
     <motion.section
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className="relative w-full min-h-screen py-20 md:py-28 flex items-center bg-gradient-to-br from-background via-background to-primary/3 dark:bg-gradient-to-br dark:from-background dark:via-background dark:to-background overflow-hidden"
+      className="relative w-full min-h-screen py-20 md:py-28 flex items-center bg-gradient-to-br from-background via-background to-primary/5 dark:bg-background overflow-hidden"
     >
       <GridBackground />
       
@@ -163,7 +117,7 @@ export default function HeroSection() {
                 BEM KM FT 
               </span>
               <br />
-              <span className="text-primary"> UMUS 2025</span>
+              <span className="text-primary"> UMUS 2026</span>
             </h1>
           </motion.div>
           
@@ -181,11 +135,10 @@ export default function HeroSection() {
         >
           <div className="relative max-w-sm mx-auto">
             <motion.div 
-              className="absolute -top-6 -left-6 w-60 h-60 bg-gradient-to-br from-primary/8 to-blue-400/8 rounded-full blur-3xl"
+              className="absolute -top-6 -left-6 w-60 h-60 bg-gradient-to-br from-primary/20 to-blue-400/20 rounded-full blur-3xl"
               animate={{
                 scale: [1, 1.1, 1],
-                opacity: [0.4, 0.7, 0.4],
-                rotate: [0, 360]
+                opacity: [0.4, 0.7, 0.4]
               }}
               transition={{
                 duration: 20,
@@ -193,44 +146,18 @@ export default function HeroSection() {
                 ease: "linear"
               }}
             />
-            <motion.div 
-              className="absolute -bottom-6 -right-6 w-40 h-40 bg-gradient-to-br from-blue-400/10 to-primary/10 rounded-full blur-2xl"
-              animate={{
-                scale: [1, 1.3, 1],
-                opacity: [0.3, 0.6, 0.3],
-                rotate: [360, 0]
-              }}
-              transition={{
-                duration: 15,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-            />
             
             <motion.div className="relative">
-              <motion.div
-                className="absolute inset-0 rounded-2xl blur-xl"
-                animate={{
-                  scale: [1, 1.05, 1],
-                  opacity: [0.5, 0.8, 0.5]
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-              <motion.img
-                src="/logos/logo.png"
-                alt="Logo BEM FT UMUS 2025"
-                className="relative z-10 w-full h-auto max-w-xs max-h-80 object-contain filter drop-shadow-2xl"
-                whileHover={{ 
-                  scale: 1.05, 
-                  rotate: [0, 1, -1, 0],
-                  filter: "drop-shadow(0 25px 25px rgba(59, 130, 246, 0.15))"
-                }}
-                transition={{ duration: 0.3 }}
-              />
+              {/* Menggunakan Next.js Image untuk performa LCP yang lebih baik */}
+              <div className="relative z-10 w-full h-auto max-w-xs mx-auto aspect-square">
+                <Image
+                  src="/logos/logo.png"
+                  alt="Logo BEM FT UMUS 2026"
+                  fill
+                  priority
+                  className="object-contain filter drop-shadow-2xl"
+                />
+              </div>
             </motion.div>
           </div>
         </motion.div>

@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react";
 import { Container } from "@/components/layout/container";
-import { SectionTitle } from "@/components/layout/section-title";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { campusInfo } from "@/lib/constants/info";
@@ -118,7 +117,7 @@ export function ContactSection() {
       } else {
         showToast("Gagal mengirim pesan. Silakan coba lagi.", "error");
       }
-    } catch (error) {
+    } catch { 
       showToast("Terjadi kesalahan. Silakan coba lagi.", "error");
     } finally {
       setIsSubmitting(false);

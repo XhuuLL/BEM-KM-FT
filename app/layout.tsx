@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "BEM Fakultas Teknik",
-  description: "Website BEM FT UMUS",
+  title: "BEM KM FT UMUS",
+  description: "Website BEM KM FT UMUS",
 };
 
 export default function RootLayout({

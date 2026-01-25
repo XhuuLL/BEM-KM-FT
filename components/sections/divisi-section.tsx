@@ -3,9 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
 import { divisions } from "@/lib/data/divisi";
-import { Users, Target, ChevronRight, ArrowRight } from "lucide-react";
+import { Users, Target, ChevronRight } from "lucide-react"; // ArrowRight dihapus dari sini
 import { motion } from "framer-motion";
-
+import Link from "next/link"; // Tambahkan import Link dari next/link
 
 export default function DivisiSection() {
   const containerVariants = {
@@ -114,24 +114,17 @@ export default function DivisiSection() {
               whileHover="hover"
               custom={idx}
             >
-              {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-yellow-400/5 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-              {/* Bottom accent */}
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-yellow-400 to-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+              
               <motion.div variants={cardHoverVariants}>
-                {/* Content */}
                 <div className="relative p-6">
-                  {/* Icon and Badge */}
                   <div className="flex items-center justify-between mb-4">
                     <motion.div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-yellow-400 flex items-center justify-center shadow-lg" whileHover={{ rotate: 360 }} transition={{ duration: 0.6 }}>
                       <Target className="w-7 h-7 text-white" />
                     </motion.div>
-
-                    <motion.div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300" whileHover={{ scale: 1.1 }}></motion.div>
                   </div>
 
-                  {/* Title */}
                   <motion.h3
                     className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors"
                     whileHover={{ x: 5 }}
@@ -157,14 +150,13 @@ export default function DivisiSection() {
           </motion.div>
 
           <motion.div className="flex flex-col sm:flex-row gap-4 justify-center" variants={itemVariants}>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}></motion.div>
-
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              {/* PERBAIKAN: Gunakan Link dari next/link dan pastikan penempatan asChild benar */}
               <Button asChild variant="outline" size="lg" className="bg-white dark:bg-gray-900 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/50">
-                <a href="/divisi" className="flex items-center gap-2">
+                <Link href="/divisi" className="flex items-center gap-2">
                   Lihat Selengkapnya
                   <ChevronRight className="w-4 h-4" />
-                </a>
+                </Link>
               </Button>
             </motion.div>
           </motion.div>
