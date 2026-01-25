@@ -1,10 +1,11 @@
 "use client";
 
+import React from "react"; // Tambahkan import React
 import { Container } from "@/components/layout/container";
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Calendar, Tag, Info, Users } from "lucide-react"; // Import sudah diperbaiki
+import { ArrowLeft, Calendar, Tag, Info, Users } from "lucide-react";
 import Link from "next/link";
 
 // Konfigurasi Animasi
@@ -99,8 +100,13 @@ const prokerData = {
   }
 };
 
-export default function DetailProker({ params }: { params: { slug: string } }) {
-  const data = prokerData[params.slug as keyof typeof prokerData];
+// Next.js 15: params harus di-unwrap (biasanya dengan React.use() di Client Component)
+export default function DetailProker({ params }: { params: Promise<{ slug: string }> }) {
+  // Unwrap params menggunakan React.use()
+  const resolvedParams = React.use(params);
+  const slug = resolvedParams.slug;
+
+  const data = prokerData[slug as keyof typeof prokerData];
 
   if (!data) {
     notFound();
@@ -139,7 +145,6 @@ export default function DetailProker({ params }: { params: { slug: string } }) {
             animate="visible"
             className="lg:col-span-7 space-y-8"
           >
-            {/* Main Featured Image */}
             <div className="relative h-[300px] md:h-[500px] w-full rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/20 dark:border-slate-800 group">
               <Image 
                 src={data.image} 
@@ -151,7 +156,6 @@ export default function DetailProker({ params }: { params: { slug: string } }) {
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent" />
             </div>
 
-            {/* Metadata Badges */}
             <div className="flex flex-wrap gap-4">
               <div className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
                 <Tag size={16} className="text-blue-500" />

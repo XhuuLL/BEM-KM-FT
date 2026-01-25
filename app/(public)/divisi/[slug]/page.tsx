@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react"; // Tambahkan import React
 import { divisions } from "@/lib/data/divisi";
 import { notFound } from "next/navigation";
 import Image from "next/image";
@@ -25,8 +26,14 @@ const staggerContainer: Variants = {
   }
 };
 
-export default function DetailDivisiPage({ params }: { params: { slug: string } }) {
-  const divisi = divisions.find((d) => d.slug === params.slug);
+// Next.js 15 mewajibkan params di-unwrap menggunakan React.use() di Client Component
+export default function DetailDivisiPage({ params }: { params: Promise<{ slug: string }> }) {
+  // Unwrap params menggunakan React.use()
+  const resolvedParams = React.use(params);
+  const { slug } = resolvedParams;
+
+  const divisi = divisions.find((d) => d.slug === slug);
+  
   if (!divisi) return notFound();
 
   return (
@@ -37,7 +44,7 @@ export default function DetailDivisiPage({ params }: { params: { slug: string } 
 
       <Container className="space-y-24">
         
-        {/* --- HERO SECTION (Banner dengan Judul di Dalam) --- */}
+        {/* --- HERO SECTION --- */}
         <div className="relative">
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
@@ -51,7 +58,6 @@ export default function DetailDivisiPage({ params }: { params: { slug: string } 
               className="object-cover scale-105" 
               priority
             />
-            {/* Overlay Gradient yang lebih pekat di bawah untuk teks */}
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent" />
             
             <div className="absolute bottom-0 left-0 p-8 md:p-14 w-full">
@@ -124,7 +130,6 @@ export default function DetailDivisiPage({ params }: { params: { slug: string } 
             <div className="h-[1px] flex-grow max-w-[100px] bg-gradient-to-l from-transparent to-slate-300 dark:to-slate-700" />
           </div>
 
-          {/* Penggunaan Flex Wrap dengan Justify Center agar 3 atau 4 anggota selalu rapi di tengah */}
           <motion.div 
             variants={staggerContainer}
             initial="hidden"
