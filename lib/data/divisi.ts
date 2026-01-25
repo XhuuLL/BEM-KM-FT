@@ -4,7 +4,7 @@ export const divisions: Division[] = [
   {
     slug: "bph",
     name: "BPH (Badan Pengurus Harian)",
-    image: "/images/divisi/bph.jpg",
+    image: "/images/divisi/bph.JPG",
     description: "Divisi inti yang mengelola seluruh jalannya organisasi.",
 
     coordinator: {
@@ -23,7 +23,7 @@ export const divisions: Division[] = [
   {
     slug: "psdm",
     name: "PSDM (Pengembangan Sumber Daya Manusia)",
-    image: "/images/divisi/psdm.jpg",
+    image: "/images/divisi/psdm.JPG",
     description: "Mengembangkan kualitas dan kapasitas sumber daya mahasiswa.",
 
     coordinator: {
@@ -42,7 +42,7 @@ export const divisions: Division[] = [
   {
     slug: "infokom",
     name: "Infokom (Informasi dan Komunikasi)",
-    image: "/images/divisi/infokom.jpg",
+    image: "/images/divisi/infokom.JPG",
     description: "Mengelola publikasi, dokumentasi, dan komunikasi organisasi.",
 
     coordinator: {
@@ -60,7 +60,7 @@ export const divisions: Division[] = [
   {
     slug: "humas",
     name: "Humas (Hubungan Masyarakat)",
-    image: "/images/divisi/humas.jpg",
+    image: "/images/divisi/humas.JPG",
     description: "Menjalin hubungan dengan pihak internal dan eksternal.",
 
     coordinator: {
@@ -79,7 +79,7 @@ export const divisions: Division[] = [
   {
     slug: "minbak",
     name: "Minbak (Minat dan Bakat)",
-    image: "/images/divisi/minbak.jpg",
+    image: "/images/divisi/minbak.JPG",
     description: "Mengembangkan potensi, minat, dan bakat mahasiswa.",
 
     coordinator: {
