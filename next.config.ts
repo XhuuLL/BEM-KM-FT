@@ -1,17 +1,18 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  /* config options here */
   devIndicators: false,
   images: {
     domains: ["picsum.photos"],
-    unoptimized: true, 
+    unoptimized: true,
   },
   eslint: {
-    // Mengabaikan error linting (variabel tak terpakai, dll)
+    // Mengabaikan linting agar build tidak gagal di Vercel
     ignoreDuringBuilds: true,
   },
   typescript: {
-    // Mengabaikan error tipe data
+    // Mengabaikan type error agar build tidak gagal di Vercel
     ignoreBuildErrors: true,
   },
 };
